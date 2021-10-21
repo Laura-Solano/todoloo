@@ -2,6 +2,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const { User } = require("../models");
+const { Op } = require("sequelize");
+
 const validateSession = require("../middleware/validate-session");
 
 const router = Router();
@@ -35,7 +37,7 @@ router.post('/register', async (req, res) => {
   } catch (error) {
       // catch error with findAll method and send it in the response
       res.status(500).json({
-          message: 'Problem searching for existing user',
+          message: 'Problem creating new user',
           error: error,
       });
       return;
@@ -53,13 +55,13 @@ router.post('/register', async (req, res) => {
       });
       // send a success message and token with the repsonse
       res.status(200).json({
-          message: `Welcome ${username} to ToodoLoo`,
+          message: `Welcome ${username} to TodoLoo`,
           sessionToken: token,
       });
   } catch (error) {
       // catch error with create method and send it in the response
       res.status(500).json({
-          messge: 'Something went wrong, please try again.',
+          message: 'Something went wrong, please try again.',
           error: error,
       });
   }

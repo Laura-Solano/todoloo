@@ -21,10 +21,7 @@ const Reviews = db.define("reviews", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  reply: {
-    type: DataTypes.STRING(1500),
-    allowNull: false,
-  },
+
   isHelpful: {
     type: DataTypes.BOOLEAN,
     allowNull: true,
