@@ -1,8 +1,20 @@
 const User = require("./user");
-// create individual files for your models and import them here
+const Reviews = require("./reviews");
+const Photo = require("./photo");
+const Reply = require("./reply");
 
-// Setup Associations
+User.hasMany(Reviews);
+Reviews.belongsTo(User);
+Reviews.hasMany(Photo);
+Photo.belongsTo(Reviews);
+Reviews.hasOne(Reply);
+Reply.belongsTo(Reviews);
+
 
 module.exports = {
-  User,
+User,
+Reviews,
+Photo,
+Reply
+  
 };
