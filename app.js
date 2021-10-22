@@ -13,7 +13,7 @@ app.use("/user", controllers.User);
 // app.use("/reply", controllers.Reply);
 // app.use("/photo", controllers.Photo);
 
-// const resetDatabase = {force:true}
+const resetDatabase = {force:true}
 db.authenticate()
 // add a resetDatabase inside the db.sync to drop all your tables if needed
 // example:  .then(() => db.sync(resetDatabase))

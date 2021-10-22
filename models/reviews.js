@@ -1,8 +1,6 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db");
 
-
-
 const Reviews = db.define("reviews", {
     locationName: {
         type: DataTypes.STRING,

@@ -14,8 +14,13 @@ const User = db.define("user", {
     unique: true,
   },
   passwordhash: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING(1000),
     allowNull: false,
   },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+}
 });
 module.exports = User;

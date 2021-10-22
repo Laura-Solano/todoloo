@@ -1,16 +1,14 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { Router } = require("express");
+const router = require('express').Router();
 const { User } = require("../models");
 const { Op } = require("sequelize");
-
 const validateSession = require("../middleware/validate-session");
 
-const router = Router();
 
 
 router.post('/register', async (req, res) => {
-  const { email, username, password } = req.body.user;
+  const { email, username, password, role } = req.body.user;
   try {
       const existingUsers = await User.findAll({
           where: {
@@ -48,12 +46,13 @@ router.post('/register', async (req, res) => {
           email: email,
           username: username,
           passwordhash: bcrypt.hashSync(password, 13),
+          role: role,
       });
       // create a token with the newUser id
       const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
           expiresIn: 60 * 60 * 24,
       });
-      // send a success message and token with the repsonse
+      // send a success message and token with the response
       res.status(200).json({
           message: `Welcome ${username} to TodoLoo`,
           sessionToken: token,
@@ -88,7 +87,7 @@ router.post('/login', async (req, res) => {
               if(!err && matches) {
                   let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24})
                   res.status(200).json({
-                      message: `Welcome Back ${username}!`,
+                      message: `Welcome Back!`,
                       sessionToken: token
                   })
               }
@@ -107,7 +106,7 @@ router.post('/login', async (req, res) => {
   }
   catch(error) {
       res.status(500).json({
-          mesage: 'Something went wrong please try again.',
+          message: 'Something went wrong please try again.',
           error: error
       })
   }
