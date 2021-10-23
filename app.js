@@ -3,12 +3,13 @@ const Express = require("express");
 const db = require("./db");
 const app = Express();
 const controllers = require("./controllers");
+const middleware = require("./middleware")
 
 app.use(Express.json());
-
-app.use(require("./middleware/CORS"));
+app.use(middleware.CORS)
 
 app.use("/user", controllers.User);
+
 // app.use("/reviews", controllers.Reviews);
 // app.use("/reply", controllers.Reply);
 // app.use("/photo", controllers.Photo);
@@ -24,6 +25,6 @@ db.authenticate()
     })
   )
   .catch((e) => {
-    console.log("[server]: Server Crashed👹");
+    console.log("[server]:👹Server Crashed👹");
     console.log(e);
   });
