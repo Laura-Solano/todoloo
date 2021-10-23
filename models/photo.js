@@ -8,10 +8,6 @@ const Photo = db.define("photo", {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      isRegister: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }
     
 });
 

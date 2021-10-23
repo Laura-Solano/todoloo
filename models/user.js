@@ -21,6 +21,8 @@ const User = db.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
     unique: false,
+    defaultValue: "registeredUser",
+
 }
 });
 module.exports = User;

@@ -3,9 +3,6 @@ const jwt = require("jsonwebtoken");
 const router = require('express').Router();
 const { User } = require("../models");
 const { Op } = require("sequelize");
-const validateSession = require("../middleware/validate-session");
-
-
 
 router.post('/register', async (req, res) => {
   const { email, username, password, role } = req.body.user;

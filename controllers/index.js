@@ -1,4 +1,6 @@
 module.exports = {
   User: require("./usercontroller"),
-  Review: require("./reviewcontroller")
+  Reviews: require("./reviewcontroller"),
+  Reply: require("./replycontroller"),
+  Photo: require("./photocontroller")
 };
