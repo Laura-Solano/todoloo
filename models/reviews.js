@@ -28,6 +28,10 @@ const Reviews = db.define("reviews", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  photoUrl:{
+    type: DataTypes.STRING,
+    allowNull: true
+  }
   
 });
 module.exports = Reviews;

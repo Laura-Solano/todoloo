@@ -12,7 +12,8 @@ router.post('/create', validateSession, async (req, res) => {
        isFree,
        numStall,
        isHelpful,
-       stallType
+       stallType,
+       photoUrl
     } = req.body.reviews;
     try {
         const newReview = await Reviews.create({
@@ -22,8 +23,11 @@ router.post('/create', validateSession, async (req, res) => {
             numStall: numStall,
             isHelpful: isHelpful,
             stallType: stallType,
-            userId: user.id
+            userId: user.id,
+            photoUrl: photoUrl
         });
+
+ 
         res.status(200).json({
             message: 'New Review Posted!',
             reviews: newReview,
