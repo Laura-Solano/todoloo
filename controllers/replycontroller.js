@@ -4,22 +4,21 @@ const validateSession = require('../middleware/validate-session');
 
 // create a new reply
 
-router.post('/create', validateSession, async (req, res) => {
+router.post('/createReply', validateSession, async (req, res) => {
     const user = req.user;
     const reviews = req.reviews;
-    // const query = {
-    //     where: {
-    //         Role: req.user.role: "Owner"
-    //     }
-    // };
+    const reviewId = req.body.reply.reviewId;
+
+    ///Must pass reviewId on client side in json in order to create reply
+
     const {
       reply
     } = req.body.reply;
     try {
         const newReply = await Reply.create ({
+            where:{ role: "owner"},
             reply: reply,
-            reviewsId: reviews.id,
-            userId: user.id
+            reviewId: reviewId
         });
         res.status(200).json({
             message: 'reply posted',
@@ -35,7 +34,7 @@ router.post('/create', validateSession, async (req, res) => {
 });
 
 //delete the reply
-router.delete('/Delete/:replyId', validateSession, (req, res) =>{
+router.delete('/deleteReply/:replyId', validateSession, (req, res) =>{
     let replyId = req.params.replyId;
     const query = {
         where: {id: replyId, userId: req.user.id}
@@ -49,4 +48,3 @@ router.delete('/Delete/:replyId', validateSession, (req, res) =>{
 
 module.exports = router;
 
-module.exports = router;

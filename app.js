@@ -10,7 +10,7 @@ app.use(middleware.CORS)
 
 app.use("/user", controllers.User);
 app.use("/reviews", controllers.Reviews);
-// app.use("/reply", controllers.Reply);
+app.use("/reply", controllers.Reply);
 app.use("/photo", controllers.Photo);
 
 const resetDatabase = {force:true}

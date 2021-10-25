@@ -6,10 +6,7 @@ const Reply = db.define("reply", {
         type: DataTypes.STRING(2000),
         allowNull: false,
       },
-isOwner: {
-    type: DataTypes.STRING,
-      allowNull: false,
-    }
+
 });
 
 module.exports = Reply;
