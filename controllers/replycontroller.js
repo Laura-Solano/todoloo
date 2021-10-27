@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const { Reply } = require("../models");
+const { Reply, User } = require("../models");
 const validateSession = require('../middleware/validate-session');
 
 // create a new reply
 
-router.post('/createReply', validateSession, async (req, res) => {
+router.post('/createReply/:reviewId', validateSession, async (req, res) => {
     const user = req.user;
-    const reviews = req.reviews;
-    const reviewId = req.body.reply.reviewId;
+    const reviewId = req.params.reviewId;
+   
 
     ///Must pass reviewId on client side in json in order to create reply
 
@@ -18,7 +18,8 @@ router.post('/createReply', validateSession, async (req, res) => {
         const newReply = await Reply.create ({
             where:{ role: "owner"},
             reply: reply,
-            reviewId: reviewId
+            reviewId: reviewId,
+            userId: user.id
         });
         res.status(200).json({
             message: 'reply posted',
@@ -45,6 +46,6 @@ router.delete('/deleteReply/:replyId', validateSession, (req, res) =>{
     res.status(500).json({ error: err, message: 'Error occurred, reply has not been deleted'})
     );
 })
-
+//setup delete button on front end to only show if they created the reply, done through a chain of events
 module.exports = router;
 

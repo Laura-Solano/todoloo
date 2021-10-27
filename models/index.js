@@ -9,6 +9,8 @@ Reviews.hasMany(Photo);
 Photo.belongsTo(Reviews);
 Reviews.hasOne(Reply);
 Reply.belongsTo(Reviews);
+User.hasMany(Reply);
+Reply.belongsTo(User)
 
 
 module.exports = {
