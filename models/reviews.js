@@ -16,7 +16,8 @@ const Reviews = db.define("reviews", {
   },
   numStall: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
+  
   },
 
   isHelpful: {
@@ -26,7 +27,7 @@ const Reviews = db.define("reviews", {
   },
   stallType: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   photoUrl:{
     type: DataTypes.STRING,
