@@ -56,7 +56,7 @@ router.put("/editReply/:replyId", validateSession, (req, res) => {
   const query = {
     where: { id: replyId, userId: req.user.id },
   };
-  Reviews.update(editReply, query)
+  Reply.update(editReply, query)
     .then((reply) =>
       res.status(200).json({ reply, message: "Your reply has been updated" })
     )
