@@ -6,7 +6,8 @@ const db = new Sequelize(process.env.DATABASE_URL, {
     ? {
         ssl: {
           require: true,
-          rejectUnauthorized: false, // fixing unhandled rejection
+          rejectUnauthorized: false,
+          rejection,
         },
       }
     : {},
